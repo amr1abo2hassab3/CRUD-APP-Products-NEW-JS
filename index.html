@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- this link box icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- this link css file -->
+    <link rel="stylesheet" href="./all/css/style.css">
+
+    <title>CRUD APP PRODUCTS</title>
+</head>
+
+<body>
+
+    <section class="crud">
+        <div class="head">
+            <h1>cruds</h1>
+            <h3>product managemnet systyem</h3>
+        </div>
+        <div class="input">
+            <input type="text" id="title" placeholder="title">
+            <div class="price">
+                <input onkeyup="getTotal()" type="number" id="price" placeholder="price">
+                <input onkeyup="getTotal()" type="number" id="taxes" placeholder="taxes">
+                <input onkeyup="getTotal()" type="number" id="ads" placeholder="ads">
+                <input onkeyup="getTotal()" type="number" id="discount" placeholder="discount">
+                <small onkeyup="getTotal()" id="total"></small>
+            </div>
+            <input type="text" placeholder="category" id="gategory">
+            <input type="number" placeholder="count" id="count">
+            <button id="submit" onclick="createProducts()">create</button>
+        </div>
+        <div class="output">
+            <div class="all-search">
+                <input type="search" placeholder="Search By Title" id="search" onkeyup="search()">
+                <div class="btn-search">
+                    <button id="searchTitle" onclick="searchMood(this.id)">Search By Title</button>
+                    <button id="searchCategory" onclick="searchMood(this.id)">Search By catregory</button>
+                </div>
+                <button class="delAll"></button>
+
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>title</th>
+                        <th>price</th>
+                        <th>taxes</th>
+                        <th>ads</th>
+                        <th>discount</th>
+                        <th>total</th>
+                        <th>category</th>
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyProduct">
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="checkCard">
+        <div class="box">
+            <div class="icon-swl">
+                <i class='bx bxs-message-alt-x'></i>
+            </div>
+            <div class="title">
+                <h2>are you sure ?</h2>
+            </div>
+            <div class="description">
+                <p>to delete this items </p>
+                <p id="indexDeleteText"></p>
+            </div>
+            <div class="btn-swl">
+                <div id="btnYES" onclick=" checkModeBtn(this.id)">YES</div>
+                <div id="btnNO" onclick=" checkModeBtn(this.id)">NO</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="productShow">
+
+    </section>
+    <!-- <section class="EditFrom">
+        <input type="number" placeholder="Please Enter start of edit " class="editStart">
+        <input type="number" placeholder="Please Enter end of edit " class="editEnd">
+        <button class="btn1Edit" onclick="editAll()">Edit</button>
+        <button>close</button>
+    </section> -->
+
+    <div class="loading">
+        <div class="loader">
+            Loading
+        </div>
+    </div>
+
+    <!-- this link main js file -->
+    <script src="./all/js/main.js"></script>
+</body>
+
+</html>

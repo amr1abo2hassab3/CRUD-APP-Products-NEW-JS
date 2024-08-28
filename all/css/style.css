@@ -1,0 +1,340 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #222;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.crud {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.head {
+    text-align: center;
+    margin: 10px 0;
+    text-transform: uppercase;
+}
+
+input {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border: none;
+    background-color: #111;
+    margin: 4px 0;
+    border-radius: 4px;
+    padding: 10px;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+input:focus {
+    background-color: #000;
+    transform: scale(1.1);
+}
+
+.price input {
+    width: 20%;
+}
+
+#total {
+    background-color: #a00d20;
+    padding: 6px 3px;
+    border-radius: 4px;
+}
+
+#total::before {
+    content: "Total : ";
+}
+
+button {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #470053;
+    color: white;
+    margin: 10px 0;
+    transition: all 0.3s ease-in-out;
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: #51025f;
+    letter-spacing: 2px;
+}
+
+.btn-search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn-search button {
+    width: 45%;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.actionbtn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.actionbtn div {
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+    transition: all 0.2s ease-in-out;
+}
+
+.actionbtn div:nth-child(1) {
+    background-color: yellow;
+}
+
+.actionbtn div:nth-child(2) {
+    background-color: red;
+}
+
+.actionbtn div:nth-child(3) {
+    background-color: blue;
+}
+
+.actionbtn div:hover {
+    opacity: 0.4;
+    color: white;
+    transform: scale(1.1);
+}
+
+table th {
+    text-transform: uppercase;
+}
+
+th,
+td {
+    padding: 5px;
+}
+
+.checkCard,
+.productShow {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    color: white;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.548);
+    display: flex;
+    transform: scale(0);
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.box {
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px white;
+    transform: scale(0);
+    transition: all 0.5s ease-in-out;
+}
+
+.icon-swl {
+    font-size: 100px;
+    color: red;
+    margin-top: 20px;
+}
+
+.title {
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+.description {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.btn-swl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.btn-swl div {
+    padding: 10px 30px;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-swl div:nth-child(1) {
+    background-color: red;
+    margin: 0 10px;
+}
+
+.btn-swl div:nth-child(1):hover {
+    background-color: rgba(255, 0, 0, 0.559);
+    margin: 0 10px;
+}
+
+.btn-swl div:nth-child(2) {
+    background-color: blue;
+    margin: 0 10px;
+}
+
+.btn-swl div:nth-child(2):hover {
+    background-color: rgba(0, 0, 255, 0.6);
+    margin: 0 10px;
+}
+
+.delAll {
+    background: red;
+    text-transform: capitalize;
+    font-weight: bolder;
+    transform: scale(0);
+}
+
+.boxShow {
+    width: 60%;
+    height: 60%;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px white;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+}
+
+
+.boxShow div {
+    margin: 30px 0;
+}
+
+.EditFrom {
+    position: fixed;
+    top: 100px;
+    right: -1000px;
+    width: 30%;
+    height: 330px;
+    background-color: #222;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px white;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.EditFrom input {
+    margin: 10px 0;
+}
+
+.iconClose {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    top: 0;
+    right: 30px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.loading {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #222;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+    transform: scale(1);
+}
+
+.loader {
+    display: inline-block;
+    text-align: center;
+    line-height: 86px;
+    text-align: center;
+    position: relative;
+    padding: 0 48px;
+    font-size: 48px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: currentColor;
+    position: absolute;
+    animation: load .7s infinite alternate ease-in-out;
+    top: 0;
+}
+
+.loader:after {
+    top: auto;
+    bottom: 0;
+}
+
+@keyframes load {
+    0% {
+        left: 0;
+        height: 43px;
+        width: 15px;
+        transform: translateX(0)
+    }
+
+    50% {
+        height: 10px;
+        width: 40px
+    }
+
+    100% {
+        left: 100%;
+        height: 43px;
+        width: 15px;
+        transform: translateX(-100%)
+    }
+}
