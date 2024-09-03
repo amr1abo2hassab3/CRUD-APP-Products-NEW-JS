@@ -15,8 +15,11 @@ let arrayProducts;
 let delAllBtn = document.querySelector(".delAll");
 
 // check the localstorage if localstorage has the data or not
-if (localStorage.products !== null) {
-  arrayProducts = JSON.parse(localStorage.products);
+if (
+  localStorage.getItem("products") !== null &&
+  localStorage.getItem("products") !== "undefined"
+) {
+  arrayProducts = JSON.parse(localStorage.getItem("products"));
   display();
 } else {
   arrayProducts = [];
@@ -66,7 +69,7 @@ function createProducts() {
 
 // this function calculater the total price of the product and show in element total
 function getTotal() {
-  if (price.value !== "") {
+  if (priceInput.value !== "") {
     let result =
       +priceInput.value +
       +taxesInput.value +
