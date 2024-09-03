@@ -48,6 +48,7 @@ input:focus {
     background-color: #a00d20;
     padding: 6px 3px;
     border-radius: 4px;
+    margin-left: 20px;
 }
 
 #total::before {

@@ -14,25 +14,34 @@ let tmepEdit = 0;
 let arrayProducts;
 let delAllBtn = document.querySelector(".delAll");
 
-// // this function in loading page
-// document.addEventListener("DOMContentLoaded", function () {
-//   const loadingElement = document.querySelector(".loading");
-
-//   if (loadingElement) {
-//     setTimeout(() => {
-//       loadingElement.style.transform = "scaleY(0)";
-//     }, 1500);
-//   }
-// });
-
 // check the localstorage if localstorage has the data or not
 if (
   localStorage.getItem("products") !== null &&
   localStorage.getItem("products") !== "undefined"
 ) {
   arrayProducts = JSON.parse(localStorage.getItem("products"));
+  // this function in loading page
+  document.addEventListener("DOMContentLoaded", function () {
+    const loadingElement = document.querySelector(".loading");
+
+    if (loadingElement) {
+      setTimeout(() => {
+        loadingElement.style.transform = "scaleY(0)";
+      }, 1500);
+    }
+  });
   display();
 } else {
+  // this function in loading page
+  document.addEventListener("DOMContentLoaded", function () {
+    const loadingElement = document.querySelector(".loading");
+
+    if (loadingElement) {
+      setTimeout(() => {
+        loadingElement.style.transform = "scaleY(0)";
+      }, 1500);
+    }
+  });
   arrayProducts = [];
 }
 
