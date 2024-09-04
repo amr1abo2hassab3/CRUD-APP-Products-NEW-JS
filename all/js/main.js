@@ -13,6 +13,15 @@ let mode = "create";
 let tmepEdit = 0;
 let arrayProducts;
 let delAllBtn = document.querySelector(".delAll");
+let EditAll = document.getElementById("EditAll");
+let EditFrom = document.querySelector(".EditFrom");
+let closeFormEdit = document.querySelector(".closeFormEdit");
+let editStart = document.querySelector(".editStart");
+let editEnd = document.querySelector(".editEnd");
+let btn1Edit = document.querySelector(".btn1Edit");
+let DeleteForm = document.getElementById("DeleteForm");
+let btn1Delete = document.querySelector(".btn1Delete");
+let modeEditAll = "";
 
 // this function in loading page
 window.onload = function () {
@@ -25,7 +34,7 @@ window.onload = function () {
   }
 };
 
-// check the localstorage if localstorage has the data or not
+// check the localstorage if localstorage has hhthe data or not
 if (
   localStorage.getItem("products") !== null &&
   localStorage.getItem("products") !== "undefined"
@@ -63,8 +72,16 @@ function createProducts() {
       arrayProducts.push(product);
     }
   } else {
-    arrayProducts[tmepEdit] = product;
-
+    if (modeEditAll === "EditAll") {
+      for (let i = editStart.value - 1; i < editEnd.value; i++) {
+        arrayProducts[i] = product;
+      }
+      editStart.value = "";
+      editEnd.value = "";
+    } else {
+      arrayProducts[tmepEdit] = product;
+    }
+    modeEditAll = "";
     mode = "create";
     btnSubmit.innerHTML = "Create";
     countInput.style.display = "block";
@@ -136,8 +153,12 @@ function display() {
   if (arrayProducts.length > 0) {
     delAllBtn.style.transform = "scale(1)";
     delAllBtn.innerHTML = `Delete All products  (${arrayProducts.length})`;
+    EditAll.style.transform = "scale(1)";
+    DeleteForm.style.transform = "scale(1)";
   } else {
+    DeleteForm.style.transform = "scale(0)";
     delAllBtn.style.transform = "scale(0)";
+    EditAll.style.transform = "scale(0)";
   }
   bodyProduct.innerHTML = tabel;
 }
@@ -191,15 +212,116 @@ function edit(i) {
   total.style.background = "#040";
   countInput.style.display = "none";
   tmepEdit = i;
+  ScrollTopToEdit();
+}
 
+// this function scroll Top to page scroll Y = 0
+function ScrollTopToEdit() {
   scroll({
     top: 0,
     behavior: "smooth",
   });
 }
 
-// search  function
+// this function Delete the products form start value to end
+DeleteForm.addEventListener("click", () => {
+  btn1Edit.style.display = "none";
+  EditFrom.style.right = "0";
+  btn1Delete.style.display = "Block";
+  editStart.placeholder = "Please Enter Start Delete";
+  editEnd.placeholder = "Please Enter End Delete";
+});
+btn1Delete.addEventListener("click", () => {
+  if (arrayProducts.length === 0) {
+    console.error("There Are No Products to Delete !!");
+  } else {
+    if (editStart.value === "" && editEnd.value === "") {
+      console.error("Please Enter The value ");
+    } else if (editStart.value === "") {
+      console.error("Please Enter <<<< Start >>>> Delete ");
+    } else if (editEnd.value === "") {
+      console.error("Please Enter End Delete ");
+    } else if (editStart.value <= 0) {
+      console.error("Please Enter <<<< Start >>>> The value > 0 ");
+    } else if (editEnd.value <= 0) {
+      console.error("Please Enter <<<< End >>>> The value > 0 ");
+    } else if (editStart.value >= editEnd.value) {
+      console.error("Please Enter <<<< End >>>> The value > strat value ");
+    } else if (arrayProducts.length < editEnd.value) {
+      console.error(
+        ` wrong number >>>\n   End of Delete number (${editEnd.value})     \n<<< not valid  >>>  \n Please Enter number valid \n  >= (${arrayProducts.length})`
+      );
+    } else {
+      for (let i = editEnd.value - 1; i >= editStart.value - 1; i--) {
+        arrayProducts.splice(i, 1);
+      }
 
+      EditFrom.style.right = "-1000px";
+      editStart.value = "";
+      editEnd.value = "";
+      localStorage.setItem("products", JSON.stringify(arrayProducts));
+      display();
+    }
+  }
+});
+
+// function Edit form
+EditAll.addEventListener("click", () => {
+  EditFrom.style.right = "0";
+  btn1Delete.style.display = "none";
+  btn1Edit.style.display = "Block";
+  editStart.placeholder = "Please Enter Start Edit";
+  editEnd.placeholder = "Please Enter End Edit";
+});
+
+closeFormEdit.addEventListener("click", () => {
+  EditFrom.style.right = "-1000px";
+  btn1Delete.style.display = "none";
+  btn1Edit.style.display = "none";
+});
+
+btn1Edit.addEventListener("click", () => {
+  if (arrayProducts.length === 0) {
+    console.error("There Are No Products to Edit !!");
+  } else {
+    if (editStart.value === "" && editEnd.value === "") {
+      console.error("Please Enter The value ");
+    } else if (editStart.value === "") {
+      console.error("Please Enter <<<< Start >>>> Edit ");
+    } else if (editEnd.value === "") {
+      console.error("Please Enter End Edit ");
+    } else if (editStart.value <= 0) {
+      console.error("Please Enter <<<< Start >>>> The value > 0 ");
+    } else if (editEnd.value <= 0) {
+      console.error("Please Enter <<<< End >>>> The value > 0 ");
+    } else if (editStart.value >= editEnd.value) {
+      console.error("Please Enter <<<< End >>>> The value > strat value ");
+    } else if (arrayProducts.length < editEnd.value) {
+      console.error(
+        ` wrong number >>>\n   End of modification number (${editEnd.value})     \n<<< not valid  >>>  \n Please Enter number valid \n  >= (${arrayProducts.length})`
+      );
+    } else {
+      titleInput.value = arrayProducts[editStart.value].title;
+      priceInput.value = arrayProducts[editStart.value].price;
+      taxesInput.value = arrayProducts[editStart.value].taxes;
+      adsInput.value = arrayProducts[editStart.value].ads;
+      discountInput.value = arrayProducts[editStart.value].discount;
+      total.innerHTML = arrayProducts[editStart.value].total;
+      categoryInput.value = arrayProducts[editStart.value].category;
+      countInput.value = "";
+      mode = "edit";
+      modeEditAll = "EditAll";
+      btnSubmit.innerHTML = "Edit All ";
+      total.style.background = "#040";
+      countInput.style.display = "none";
+      ScrollTopToEdit();
+      EditFrom.style.right = "-1000px";
+      btn1Edit.style.display = "none";
+    }
+  }
+});
+
+// search  function
 let searchInput = document.getElementById("search");
 let searchCategory = document.getElementById("searchCategory");
 let searchTitle = document.getElementById("searchTitle");

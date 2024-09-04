@@ -218,11 +218,22 @@ td {
     margin: 0 10px;
 }
 
-.delAll {
+.delAll,
+#DeleteForm {
     background: red;
     text-transform: capitalize;
     font-weight: bolder;
     transform: scale(0);
+}
+
+#DeleteForm:hover,
+#EditAll:hover {
+    background-color: #51025f;
+}
+
+.btn1Delete,
+.btn1Edit {
+    display: none;
 }
 
 .boxShow {
@@ -257,6 +268,11 @@ td {
 
 .EditFrom input {
     margin: 10px 0;
+}
+
+#EditAll {
+    transform: scale(0);
+    background-color: #525212;
 }
 
 .iconClose {
